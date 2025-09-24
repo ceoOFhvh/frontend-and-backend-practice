@@ -3,113 +3,248 @@
 
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Товары</title>
   <script src="https://unpkg.com/vue@3"></script>
   <style>
+    /* ===== БАЗОВЫЕ СТИЛИ ===== */
     body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #7d8d7d, #1487e6);
-      color: #fff;
-      padding: 20px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
     }
 
-    .buttons {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
+    /* ===== КОНТЕЙНЕР СТРАНИЦЫ ===== */
+    .page-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      min-height: 100vh;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
     }
 
-    button {
-      padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
-      background: #b63b3b;
+    /* ===== ШАПКА ===== */
+    .header {
+      background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
       color: white;
-      font-size: 16px;
+      text-align: center;
+      padding: 30px;
+      font-size: 28px;
+      font-weight: 300;
+      letter-spacing: 2px;
+    }
+
+    /* ===== НАВИГАЦИЯ ===== */
+    .nav {
+      background: #2c3e50;
+      padding: 20px 0;
+    }
+
+    .nav-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    .nav-item {
+      margin: 0;
+    }
+
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .nav-link:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    /* ===== ОСНОВНОЙ КОНТЕНТ ===== */
+    .content {
+      padding: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ===== ЗАГОЛОВОК СТРАНИЦЫ ===== */
+    .page-title {
+      font-size: 32px;
+      color: #2c3e50;
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 300;
+    }
+
+    /* ===== КОНТРОЛЫ ===== */
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .controls button {
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      font-weight: 600;
+      font-size: 14px;
       cursor: pointer;
-      transition: 0.3s;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(79, 172, 254, 0.3);
     }
 
-    button:hover {
-      background: #525151cc;
+    .controls button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(79, 172, 254, 0.4);
     }
 
+    /* ===== СПИСОК ТОВАРОВ ===== */
     .products-list {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 20px;
     }
 
     .product {
-      background: #fff;
-      color: #000;
-      border-radius: 10px;
-      padding: 15px;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s, box-shadow 0.3s;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease;
+      border-left: 4px solid #667eea;
+      display: flex;
+      flex-direction: column;
     }
 
     .product:hover {
       transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
     }
 
-    .product img {
+    .product-image {
       width: 100%;
-      height: 200px;
+      height: 220px;
       object-fit: cover;
-      border-radius: 8px;
-      margin-bottom: 10px;
+    }
+
+    .product-content {
+      padding: 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
     }
 
     .product h3 {
+      font-size: 20px;
+      color: #2c3e50;
       margin: 0 0 10px 0;
-      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.4;
     }
 
-    .product p {
-      font-size: 16px;
+    .product-price {
+      font-size: 22px;
       font-weight: bold;
-      color: #333;
+      color: #667eea;
+      margin: 10px 0;
     }
 
-    .product a {
+    .product-button {
       display: inline-block;
-      margin-top: 10px;
-      padding: 8px 16px;
-      background: #007bff;
-      color: #fff;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
       text-decoration: none;
-      border-radius: 4px;
-      transition: background 0.3s;
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-weight: 600;
+      text-align: center;
+      margin-top: auto;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
     }
 
-    .product a:hover {
-      background: #0056b3;
+    .product-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    /* ===== СООБЩЕНИЕ ОТСУТСТВИЯ ТОВАРОВ ===== */
+    .no-products {
+      text-align: center;
+      padding: 40px;
+      color: #7f8c8d;
+      font-size: 18px;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border-radius: 15px;
+      margin: 30px 0;
+      border-left: 5px solid #667eea;
+    }
+
+    /* ===== ФУТЕР ===== */
+    .footer {
+      background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+      color: white;
+      text-align: center;
+      padding: 30px;
+      margin-top: 50px;
     }
   </style>
 </head>
 
 <body>
-  <div id="app">
-    <div class="buttons">
-      <!-- Кнопка обновления товаров пока ничего не делает -->
-      <button @click="loadProducts">Обновить товары</button>
-      <a href="..\index.html"><button type="button">Назад</button></a>
+  <div class="page-container">
+    <div class="header">Товары</div>
+    <div class="nav">
+      <ul class="nav-list">
+        <li class="nav-item"><a class="nav-link" href="../index.html">Главная</a></li>
+        <li class="nav-item"><a class="nav-link" href="news.html">Новости</a></li>
+        <li class="nav-item"><a class="nav-link" href="practices.html">Практики</a></li>
+        <li class="nav-item"><a class="nav-link" href="goods.html">Товары</a></li>
+        <li class="nav-item"><a class="nav-link" href="contacts.html">Контакты</a></li>
+      </ul>
     </div>
 
-    <div v-if="products.length" class="products-list">
-      <div v-for="product in products" :key="product.id" class="product">
-        <img :src="product.image" alt="Товар" />
-        <h3>{{ product.name }}</h3>
-        <p>{{ product.price }} $</p>
-        <a :href="product.url" target="_blank" rel="noopener">Купить</a>
+    <div class="content">
+      <h1 class="page-title">Наши товары</h1>
+
+      <div id="app">
+        <div class="controls">
+          <button @click="loadProducts">Загрузить товары</button>
+        </div>
+
+        <div v-if="products.length" class="products-list">
+          <div v-for="product in products" :key="product.id" class="product">
+            <img :src="product.image" :alt="product.name" class="product-image" />
+            <div class="product-content">
+              <h3>{{ product.name }}</h3>
+              <p class="product-price">{{ product.price }} $</p>
+              <a :href="product.url || '#'" target="_blank" rel="noopener" class="product-button">Купить</a>
+            </div>
+          </div>
+        </div>
+
+        <div v-else class="no-products">
+          <p>Товары не загружены</p>
+        </div>
       </div>
     </div>
 
-    <div v-else>
-      <p>Товары не загружены</p>
+    <div class="footer">
+      <p>&copy; 2025 Компания. Все права защищены.</p>
+      <p>Телефон: <a href="tel:+79999999999">+7 (999) 999-99-99</a></p>
     </div>
   </div>
 
@@ -117,26 +252,29 @@
     const app = Vue.createApp({
       data() {
         return {
-            products: [
-              {
-                id: 1,
-                name: 'Бомбини гузини',
-                price: 2500,
-                image: '../images/Bombini_Gusini.png',
-              },
-              {
-                id: 2,
-                name: 'Шимпанзини бананини',
-                price: 1500,
-                image: '../images/cb.png',
-              },
-              {
-                id: 3,
-                name: 'Бурбалони лулилоли',
-                price: 3333,
-                image: '../images/bl.png',
-              }
-            ]
+          products: [
+            {
+              id: 1,
+              name: 'Бомбини гузини',
+              price: 2500,
+              image: '../images/Bombini_Gusini.png',
+              url: '#'
+            },
+            {
+              id: 2,
+              name: 'Шимпанзини бананини',
+              price: 1500,
+              image: '../images/cb.png',
+              url: '#'
+            },
+            {
+              id: 3,
+              name: 'Бурбалони лулилоли',
+              price: 3333,
+              image: '../images/bl.png',
+              url: '#'
+            }
+          ]
         }
       },
       methods: {
