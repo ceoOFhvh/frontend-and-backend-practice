@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Контакты</title>
+  <meta name="description" content="Контактная информация" />
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #7d8d7d, #1487e6);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+    }
+
+    header p a {
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    nav ul li {
+      margin: 0;
+    }
+
+    nav ul li a,
+    #themeToggle {
+      display: inline-block;
+      padding: 10px 20px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 8px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    nav ul li a:hover,
+    #themeToggle:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.05);
+    }
+
+    main {
+      text-align: center;
+      flex: 1;
+      padding: 40px 20px;
+    }
+
+    section.contact-info {
+      margin: 40px auto;
+      max-width: 600px;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    h1,
+    h2 {
+      margin-bottom: 15px;
+    }
+
+    button.call-button {
+      margin-top: 20px;
+      background: #b63b3b;
+      border: none;
+      padding: 12px 24px;
+      color: white;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    button.call-button:hover {
+      background: #525151cc;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: rgba(0, 0, 0, 0.4);
+      margin-top: auto;
+    }
+
+    footer a {
+      color: #ffd700;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="..\index.html">Главная</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Свяжитесь с нами</h1>
+
+    <section class="contact-info">
+      <h2>Контактная информация</h2>
+      <p>📧 Электронная почта: <a href="mailto:contact@example.com" style="color: #ffd700;">contact@example.com</a></p>
+      <p>🏢 Адрес: г. Москва, Проспект Вернадского, 78</p>
+      <button class="call-button" onclick="window.location.href='tel:+79998887766'">Позвоните мне</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Компания. Все права защищены.</p>
+    <p>Телефон: +7 (999) 999-99-99</p>
+  </footer>
+
+  <script>
+    const themeButton = document.getElementById('themeToggle');
+    let isOriginal = true;
+
+    themeButton.addEventListener('click', () => {
+      if (isOriginal) {
+        document.body.style.background = 'linear-gradient(135deg, #f44336, #000)';
+      } else {
+        document.body.style.background = 'linear-gradient(135deg, #4CAF50, #2196F3)';
+      }
+      isOriginal = !isOriginal;
+    });
+  </script>
+</body>
+
+</html>
