@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Семестровая работа</title>
+    <style>
+        /* ===== CSS ПЕРЕМЕННЫЕ ===== */
+        :root {
+            /* Цветовая палитра */
+            --color-primary: #667eea;
+            --color-primary-dark: #764ba2;
+            --color-secondary: #2c3e50;
+            --color-secondary-dark: #34495e;
+            --color-accent: #4facfe;
+            --color-accent-light: #00f2fe;
+            --color-light: #ecf0f1;
+            --color-white: #ffffff;
+            --color-text: #2c3e50;
+            --color-text-light: #7f8c8d;
+            --color-border: #e9ecef;
+            
+            /* Типографика */
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --font-size-xs: 12px;
+            --font-size-sm: 14px;
+            --font-size-base: 16px;
+            --font-size-lg: 18px;
+            --font-size-xl: 20px;
+            --font-size-2xl: 24px;
+            --font-size-3xl: 28px;
+            --font-size-4xl: 32px;
+            
+            /* Размеры и отступы */
+            --space-xs: 5px;
+            --space-sm: 10px;
+            --space-md: 20px;
+            --space-lg: 30px;
+            --space-xl: 40px;
+            --space-2xl: 50px;
+            
+            /* Эффекты */
+            --border-radius-sm: 12px;
+            --border-radius-md: 15px;
+            --border-radius-lg: 25px;
+            --shadow-sm: 0 2px 5px rgba(0,0,0,0.1);
+            --shadow-md: 0 5px 20px rgba(0,0,0,0.08);
+            --shadow-lg: 0 8px 25px rgba(102, 126, 234, 0.3);
+            --transition: all 0.3s ease;
+        }
+
+        /* ===== БАЗОВЫЕ СТИЛИ ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            line-height: 1.6;
+            color: var(--color-text);
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            min-height: 100vh;
+        }
+
+        /* ===== БЛОК PAGE ===== */
+        .page {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--color-white);
+            min-height: 100vh;
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* ===== БЛОК HEADER ===== */
+        .header {
+            background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
+            color: var(--color-white);
+            text-align: center;
+            padding: var(--space-lg);
+        }
+
+        .header__title {
+            font-size: var(--font-size-3xl);
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin: 0;
+        }
+
+        /* ===== БЛОК NAV ===== */
+        .nav {
+            background: var(--color-secondary);
+            padding: var(--space-md) 0;
+        }
+
+        .nav__list {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: var(--space-md);
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav__item {
+            margin: 0;
+        }
+
+        .nav__link {
+            display: block;
+            color: var(--color-white);
+            text-decoration: none;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--border-radius-lg);
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .nav__link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Модификатор активного пункта меню */
+        .nav__item--active .nav__link {
+            background: var(--color-primary);
+            font-weight: 600;
+        }
+
+        /* ===== БЛОК MAIN ===== */
+        .main {
+            padding: var(--space-xl);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* ===== БЛОК PROFILE ===== */
+        .profile {
+            margin-bottom: var(--space-xl);
+        }
+
+        .profile__header {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+        }
+
+        .profile__title {
+            font-size: var(--font-size-4xl);
+            color: var(--color-text);
+            margin-bottom: var(--space-sm);
+            font-weight: 300;
+        }
+
+        .profile__photo {
+            width: 220px;
+            height: 280px;
+            border-radius: var(--border-radius-md);
+            object-fit: cover;
+            margin: var(--space-md) auto;
+            border: 4px solid var(--color-primary);
+            box-shadow: var(--shadow-lg);
+            background: #f0f0f0; /* Запасной фон если фото не загрузится */
+            display: block;
+        }
+
+        .profile__name {
+            font-size: var(--font-size-2xl);
+            color: var(--color-text);
+            margin: var(--space-sm) 0;
+            font-weight: 500;
+        }
+
+        .profile__group {
+            font-size: var(--font-size-lg);
+            color: var(--color-text-light);
+            margin: var(--space-xs) 0;
+        }
+
+        /* ===== БЛОК ABOUT ===== */
+        .about {
+            margin-bottom: var(--space-xl);
+        }
+
+        .about__content {
+            background: linear-gradient(135deg, #f8f9fa 0%, var(--color-light) 100%);
+            padding: var(--space-md);
+            border-radius: var(--border-radius-md);
+            border-left: 5px solid var(--color-primary);
+        }
+
+        .about__text {
+            font-size: var(--font-size-base);
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        /* ===== БЛОК SKILLS ===== */
+        .skills {
+            margin-bottom: var(--space-2xl);
+        }
+
+        .skills__title {
+            font-size: var(--font-size-3xl);
+            color: var(--color-text);
+            text-align: center;
+            margin-bottom: var(--space-lg);
+            font-weight: 300;
+        }
+
+        .skills__list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+        }
+
+        /* Блок SKILL с модификаторами */
+        .skill {
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--border-radius-lg);
+            color: var(--color-white);
+            font-weight: 600;
+            font-size: var(--font-size-sm);
+            box-shadow: 0 4px 15px rgba(79, 172, 254, 0.3);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .skill:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(79, 172, 254, 0.4);
+        }
+
+        .skill--clash {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+        }
+
+        .skill--dota {
+            background: linear-gradient(135deg, #4834d4 0%, #686de0 100%);
+        }
+
+        .skill--taco {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .skill--cheese {
+            background: linear-gradient(135deg, #f6e58d 0%, #ffbe76 100%);
+            color: var(--color-text);
+        }
+
+        .skill__name {
+            font-weight: 600;
+        }
+
+        /* ===== БЛОК EXPERIENCE ===== */
+        .experience {
+            margin-top: var(--space-2xl);
+        }
+
+        .experience__title {
+            font-size: var(--font-size-3xl);
+            color: var(--color-text);
+            text-align: center;
+            margin-bottom: var(--space-lg);
+            font-weight: 300;
+        }
+
+        .experience__list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+
+        /* Блок EXPERIENCE-CARD */
+        .experience-card {
+            background: var(--color-white);
+            padding: var(--space-md);
+            border-radius: var(--border-radius-sm);
+            box-shadow: var(--shadow-md);
+            border-left: 4px solid var(--color-primary);
+            transition: var(--transition);
+        }
+
+        .experience-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .experience-card__title {
+            font-size: var(--font-size-xl);
+            color: var(--color-text);
+            margin: 0 0 var(--space-sm) 0;
+            font-weight: 600;
+        }
+
+        .experience-card__desc {
+            color: var(--color-text-light);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* ===== БЛОК FOOTER ===== */
+        .footer {
+            background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
+            color: var(--color-white);
+            text-align: center;
+            padding: var(--space-lg);
+            margin-top: var(--space-2xl);
+        }
+
+        .footer__text {
+            margin: var(--space-sm) 0;
+        }
+
+        .footer__contact {
+            margin: var(--space-sm) 0;
+        }
+
+        .footer__link {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .footer__link:hover {
+            color: var(--color-white);
+            text-decoration: underline;
+        }
+
+        /* ===== АДАПТИВНОСТЬ ===== */
+        @media (max-width: 768px) {
+            :root {
+                --font-size-4xl: 28px;
+                --font-size-3xl: 24px;
+                --font-size-2xl: 20px;
+            }
+            
+            .nav__list {
+                flex-direction: column;
+                align-items: center;
+                gap: var(--space-sm);
+            }
+            
+            .skills__list {
+                justify-content: center;
+            }
+            
+            .main {
+                padding: var(--space-md);
+            }
+            
+            .profile__photo {
+                width: 180px;
+                height: 230px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header__title {
+                font-size: var(--font-size-2xl);
+            }
+            
+            .profile__title {
+                font-size: var(--font-size-3xl);
+            }
+            
+            .skills__list {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .skill {
+                width: 200px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Основной контейнер страницы -->
+    <div class="page">
+        <!-- Шапка -->
+        <header class="header">
+            <h1 class="header__title">Главная</h1>
+        </header>
+        
+        <!-- Навигация -->
+        <nav class="nav">
+            <ul class="nav__list">
+                <li class="nav__item nav__item--active">
+                    <a class="nav__link" href="index.html">Главная</a>
+                </li>
+                <li class="nav__item">
+                    <a class="nav__link" href="pages/news.html">Новости</a>
+                </li>
+                <li class="nav__item">
+                    <a class="nav__link" href="pages/practices.html">Практики</a>
+                </li>
+                <li class="nav__item">
+                    <a class="nav__link" href="pages/goods.html">Товары</a>
+                </li>
+                <li class="nav__item">
+                    <a class="nav__link" href="pages/contacts.html">Контакты</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Основной контент -->
+        <main class="main">
+            <!-- Профиль -->
+            <section class="profile">
+                <div class="profile__header">
+                    <h1 class="profile__title">Информация об авторе</h1>
+                    <img class="profile__photo" src="images/photo.png" alt="Фото автора">
+                    <h2 class="profile__name">Войкин Вадим Евгеньевич</h2>
+                    <p class="profile__group">ЭФБО-14-24</p>
+                </div>
+            </section>
+
+            <!-- Обо мне -->
+            <section class="about">
+                <div class="about__content">
+                    <p class="about__text">Обо мне: Студент, увлекаюсь веб-разработкой. Изучаю HTML, CSS и JavaScript. Люблю создавать красивые и функциональные сайты.</p>
+                </div>
+            </section>
+
+            <!-- Навыки -->
+            <section class="skills">
+                <h2 class="skills__title">Мои навыки</h2>
+                <div class="skills__list">
+                    <div class="skill skill--clash">
+                        <span class="skill__name">HTML</span>
+                    </div>
+                    <div class="skill skill--dota">
+                        <span class="skill__name">CSS</span>
+                    </div>
+                    <div class="skill skill--taco">
+                        <span class="skill__name">JavaScript</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Опыт работы -->
+            <section class="experience">
+                <h2 class="experience__title">Мой опыт работы</h2>
+                <div class="experience__list">
+                    <div class="experience-card">
+                        <h3 class="experience-card__title">Опыт 1</h3>
+                        <p class="experience-card__desc">Разработал для курсовой игру "Виселица"</p>
+                    </div>
+                    <div class="experience-card">
+                        <h3 class="experience-card__title">Опыт 2</h3>
+                        <p class="experience-card__desc">Создаю сайты на HTML</p>
+                    </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Подвал -->
+        <footer class="footer">
+            <p class="footer__text">&copy; 2025 Компания. Все права защищены.</p>
+            <p class="footer__contact">
+                Телефон: <a class="footer__link" href="tel:+79999999999">+7 (999) 999-99-99</a>
+            </p>
+        </footer>
+    </div>
+</body>
+
+</html>
